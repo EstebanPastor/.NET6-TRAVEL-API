@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.IService;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Travel_API.Controllers
 {
@@ -15,17 +17,18 @@ namespace Travel_API.Controllers
         {
             _userService = userService;
         }
+
         [HttpGet]
         public ActionResult<List<User>> GetAllUsers()
         {
-            var users = _userService.GetAllUsers();
+            var users = _userService.GetAllUsers().ToList();
             return Ok(users);
         }
 
         [HttpGet("{id}")]
         public ActionResult<User> GetUserById(int id)
         {
-            var user = _userService.GetUserById(id);
+            var user = _userService.GetAllUsers().FirstOrDefault(u => u.Id == id);
             if (user == null)
                 return NotFound();
 
@@ -42,7 +45,7 @@ namespace Travel_API.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateUser(int id, User updatedUser)
         {
-            var user = _userService.GetUserById(id);
+            var user = _userService.GetAllUsers().FirstOrDefault(u => u.Id == id);
             if (user == null)
                 return NotFound();
 
@@ -58,7 +61,7 @@ namespace Travel_API.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
-            var user = _userService.GetUserById(id);
+            var user = _userService.GetAllUsers().FirstOrDefault(u => u.Id == id);
             if (user == null)
                 return NotFound();
 

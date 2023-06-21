@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.IService;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Travel_API.Controllers
 {
@@ -10,6 +12,7 @@ namespace Travel_API.Controllers
     public class TravelController : ControllerBase
     {
         private readonly ITravelService _travelService;
+
         public TravelController(ITravelService travelService)
         {
             _travelService = travelService;
@@ -18,14 +21,14 @@ namespace Travel_API.Controllers
         [HttpGet]
         public ActionResult<List<Travel>> GetAllTravels()
         {
-            var travels = _travelService.GetAllTravels();
+            var travels = _travelService.GetAllTravels().ToList();
             return Ok(travels);
         }
 
         [HttpGet("{id}")]
         public ActionResult<Travel> GetTravelById(int id)
         {
-            var travel = _travelService.GetTravelById(id);
+            var travel = _travelService.GetAllTravels().FirstOrDefault(t => t.Id == id);
             if (travel == null)
                 return NotFound();
 
@@ -42,7 +45,7 @@ namespace Travel_API.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateTravel(int id, Travel updatedTravel)
         {
-            var travel = _travelService.GetTravelById(id);
+            var travel = _travelService.GetAllTravels().FirstOrDefault(t => t.Id == id);
             if (travel == null)
                 return NotFound();
 
@@ -59,7 +62,7 @@ namespace Travel_API.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteTravel(int id)
         {
-            var travel = _travelService.GetTravelById(id);
+            var travel = _travelService.GetAllTravels().FirstOrDefault(t => t.Id == id);
             if (travel == null)
                 return NotFound();
 
@@ -67,6 +70,5 @@ namespace Travel_API.Controllers
 
             return NoContent();
         }
-
     }
 }
