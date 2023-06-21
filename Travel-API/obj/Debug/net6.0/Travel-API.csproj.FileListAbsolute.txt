@@ -178,3 +178,5 @@ C:\Users\esteb\OneDrive\Escritorio\Stuff\Facultad\API_Realoaded\Travel-API\Trave
 C:\Users\esteb\OneDrive\Escritorio\Stuff\Facultad\API_Realoaded\Travel-API\Travel-API\obj\Debug\net6.0\Travel-API.csproj.CopyComplete
 C:\Users\esteb\OneDrive\Escritorio\Stuff\Facultad\API_Realoaded\Travel-API\Travel-API\obj\Debug\net6.0\Travel-API.genruntimeconfig.cache
 C:\Users\esteb\OneDrive\Escritorio\Stuff\Facultad\API_Realoaded\Travel-API\Travel-API\obj\Debug\net6.0\ref\Travel-API.dll
+C:\Users\esteb\OneDrive\Escritorio\Stuff\Facultad\API_Realoaded\Travel-API\Travel-API\bin\Debug\net6.0\Serilog.dll
+C:\Users\esteb\OneDrive\Escritorio\Stuff\Facultad\API_Realoaded\Travel-API\Travel-API\bin\Debug\net6.0\Serilog.Sinks.File.dll

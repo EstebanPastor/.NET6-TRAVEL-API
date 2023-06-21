@@ -2,15 +2,26 @@ using Data.Context;
 using Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using Serilog;
+using Serilog.Events;
 using Services.IService;
 using Services.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// serilog
+
+string logsFolder = Path.Combine(Directory.GetCurrentDirectory(), "Logs");
+Directory.CreateDirectory(logsFolder);
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+    .Enrich.FromLogContext()
+    .WriteTo.File(Path.Combine(logsFolder, "logs.txt"), rollingInterval: RollingInterval.Day)
+    .CreateLogger();
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

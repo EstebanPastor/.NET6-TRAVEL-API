@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/2JfbnJQgQgjg062OZ2Q4yTL9+FBxR0GMHu+/O04Oy0V9mrwEaqyXYO9n75MnI4UhqrWMP/lZphT1vVMeZO2Zg==",
+  "dgSpecHash": "cLsBcCgbG4DXxIzl7kVw8vKgA3WWkut4jYznUg6GApMbAqpc3dEdPM+aS48vWTVt6Wl/+CXll/vbgrOSVDi/wQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\esteb\\OneDrive\\Escritorio\\Stuff\\Facultad\\API_Realoaded\\Travel-API\\Travel-API\\Travel-API.csproj",
   "expectedPackageFiles": [
@@ -44,6 +44,8 @@
     "C:\\Users\\esteb\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\esteb\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\esteb\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\esteb\\.nuget\\packages\\serilog\\3.0.0\\serilog.3.0.0.nupkg.sha512",
+    "C:\\Users\\esteb\\.nuget\\packages\\serilog.sinks.file\\5.0.0\\serilog.sinks.file.5.0.0.nupkg.sha512",
     "C:\\Users\\esteb\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\esteb\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\esteb\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
