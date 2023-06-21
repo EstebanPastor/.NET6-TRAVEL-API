@@ -24,7 +24,8 @@ builder.Services.AddDbContext<AppDBContext>(options =>
 
 builder.Services.AddScoped<ITravelService, TravelService>();
 builder.Services.AddScoped<ITravelRepository, TravelRepository>();
-
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 
