@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.IService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,53 +22,88 @@ namespace Travel_API.Controllers
         [HttpGet]
         public ActionResult<List<User>> GetAllUsers()
         {
-            var users = _userService.GetAllUsers().ToList();
-            return Ok(users);
+            try
+            {
+                var users = _userService.GetAllUsers().ToList();
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
 
         [HttpGet("{id}")]
         public ActionResult<User> GetUserById(int id)
         {
-            var user = _userService.GetAllUsers().FirstOrDefault(u => u.Id == id);
-            if (user == null)
-                return NotFound();
+            try
+            {
+                var user = _userService.GetAllUsers().FirstOrDefault(u => u.Id == id);
+                if (user == null)
+                    return NotFound();
 
-            return Ok(user);
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
 
         [HttpPost]
         public ActionResult<User> AddUser(User user)
         {
-            _userService.AddUser(user);
-            return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, user);
+            try
+            {
+                _userService.AddUser(user);
+                return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, user);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
 
         [HttpPut("{id}")]
         public IActionResult UpdateUser(int id, User updatedUser)
         {
-            var user = _userService.GetAllUsers().FirstOrDefault(u => u.Id == id);
-            if (user == null)
-                return NotFound();
+            try
+            {
+                var user = _userService.GetAllUsers().FirstOrDefault(u => u.Id == id);
+                if (user == null)
+                    return NotFound();
 
-            user.Name = updatedUser.Name;
-            user.Email = updatedUser.Email;
-            user.TravelID = updatedUser.TravelID;
+                user.Name = updatedUser.Name;
+                user.Email = updatedUser.Email;
+                user.TravelID = updatedUser.TravelID;
 
-            _userService.UpdateUser(user);
+                _userService.UpdateUser(user);
 
-            return NoContent();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
-            var user = _userService.GetAllUsers().FirstOrDefault(u => u.Id == id);
-            if (user == null)
-                return NotFound();
+            try
+            {
+                var user = _userService.GetAllUsers().FirstOrDefault(u => u.Id == id);
+                if (user == null)
+                    return NotFound();
 
-            _userService.DeleteUser(id);
+                _userService.DeleteUser(id);
 
-            return NoContent();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
     }
 }

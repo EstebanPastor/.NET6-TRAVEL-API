@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.IService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,54 +22,89 @@ namespace Travel_API.Controllers
         [HttpGet]
         public ActionResult<List<Travel>> GetAllTravels()
         {
-            var travels = _travelService.GetAllTravels().ToList();
-            return Ok(travels);
+            try
+            {
+                var travels = _travelService.GetAllTravels().ToList();
+                return Ok(travels);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
 
         [HttpGet("{id}")]
         public ActionResult<Travel> GetTravelById(int id)
         {
-            var travel = _travelService.GetAllTravels().FirstOrDefault(t => t.Id == id);
-            if (travel == null)
-                return NotFound();
+            try
+            {
+                var travel = _travelService.GetAllTravels().FirstOrDefault(t => t.Id == id);
+                if (travel == null)
+                    return NotFound();
 
-            return Ok(travel);
+                return Ok(travel);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
 
         [HttpPost]
         public ActionResult<Travel> AddTravel(Travel travel)
         {
-            _travelService.AddTravel(travel);
-            return CreatedAtAction(nameof(GetTravelById), new { id = travel.Id }, travel);
+            try
+            {
+                _travelService.AddTravel(travel);
+                return CreatedAtAction(nameof(GetTravelById), new { id = travel.Id }, travel);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
 
         [HttpPut("{id}")]
         public IActionResult UpdateTravel(int id, Travel updatedTravel)
         {
-            var travel = _travelService.GetAllTravels().FirstOrDefault(t => t.Id == id);
-            if (travel == null)
-                return NotFound();
+            try
+            {
+                var travel = _travelService.GetAllTravels().FirstOrDefault(t => t.Id == id);
+                if (travel == null)
+                    return NotFound();
 
-            travel.Destination = updatedTravel.Destination;
-            travel.DepartureDate = updatedTravel.DepartureDate;
-            travel.ReturnDate = updatedTravel.ReturnDate;
-            travel.Price = updatedTravel.Price;
+                travel.Destination = updatedTravel.Destination;
+                travel.DepartureDate = updatedTravel.DepartureDate;
+                travel.ReturnDate = updatedTravel.ReturnDate;
+                travel.Price = updatedTravel.Price;
 
-            _travelService.UpdateTravel(travel);
+                _travelService.UpdateTravel(travel);
 
-            return NoContent();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteTravel(int id)
         {
-            var travel = _travelService.GetAllTravels().FirstOrDefault(t => t.Id == id);
-            if (travel == null)
-                return NotFound();
+            try
+            {
+                var travel = _travelService.GetAllTravels().FirstOrDefault(t => t.Id == id);
+                if (travel == null)
+                    return NotFound();
 
-            _travelService.DeleteTravel(id);
+                _travelService.DeleteTravel(id);
 
-            return NoContent();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
     }
 }
