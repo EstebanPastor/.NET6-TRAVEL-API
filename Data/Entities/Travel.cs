@@ -18,7 +18,5 @@ namespace Data.Entities
         public DateTime DepartureDate { get; set; }
         public DateTime ReturnDate { get; set; }
         public decimal Price { get; set; }
-
-        public virtual ICollection<Travel> Travels { get; set; }
     }
 }
