@@ -37,6 +37,8 @@ builder.Services.AddScoped<ITravelService, TravelService>();
 builder.Services.AddScoped<ITravelRepository, TravelRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRegisteredService, UserRegisterService>();
+builder.Services.AddScoped<IUserRegisterRepository, UserRegisterRepository>();
 
 var app = builder.Build();
 

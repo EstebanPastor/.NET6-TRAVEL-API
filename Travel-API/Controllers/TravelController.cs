@@ -29,7 +29,7 @@ namespace Travel_API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error while getting all the travels: " + ex.Message);
             }
         }
 
@@ -40,13 +40,13 @@ namespace Travel_API.Controllers
             {
                 var travel = _travelService.GetAllTravels().FirstOrDefault(t => t.Id == id);
                 if (travel == null)
-                    return NotFound();
+                    return NotFound("Travel not found with that id.");
 
                 return Ok(travel);
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error while obtaining the trip " + ex.Message);
             }
         }
 
@@ -60,7 +60,7 @@ namespace Travel_API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error while adding a travel: " + ex.Message);
             }
         }
 
@@ -71,7 +71,7 @@ namespace Travel_API.Controllers
             {
                 var travel = _travelService.GetAllTravels().FirstOrDefault(t => t.Id == id);
                 if (travel == null)
-                    return NotFound();
+                    return NotFound("Error while updating that id.");
 
                 travel.Destination = updatedTravel.Destination;
                 travel.DepartureDate = updatedTravel.DepartureDate;
@@ -84,7 +84,7 @@ namespace Travel_API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error while updating the travel: " + ex.Message);
             }
         }
 
@@ -95,7 +95,7 @@ namespace Travel_API.Controllers
             {
                 var travel = _travelService.GetAllTravels().FirstOrDefault(t => t.Id == id);
                 if (travel == null)
-                    return NotFound();
+                    return NotFound("Travel not found with that id.");
 
                 _travelService.DeleteTravel(id);
 
@@ -103,7 +103,7 @@ namespace Travel_API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error while deleting the travel: " + ex.Message);
             }
         }
     }

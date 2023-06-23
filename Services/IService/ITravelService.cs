@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 namespace Services.IService
 {
     public interface ITravelService
-    {
+    {    List<Travel> GetAllTravels();
         void AddTravel(Travel travel);
         void UpdateTravel(Travel travel);
         void DeleteTravel(int travelID);
         Travel GetTravelById(int travelID);
-        List<Travel> GetAllTravels();
+       
     }
 }

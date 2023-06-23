@@ -29,7 +29,7 @@ namespace Travel_API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error while getting all the users: " + ex.Message);
             }
         }
 
@@ -40,13 +40,13 @@ namespace Travel_API.Controllers
             {
                 var user = _userService.GetAllUsers().FirstOrDefault(u => u.Id == id);
                 if (user == null)
-                    return NotFound();
+                    return NotFound("Error while getting a user with that id.");
 
                 return Ok(user);
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Eror while getting a user with that id: " + ex.Message);
             }
         }
 
@@ -60,7 +60,7 @@ namespace Travel_API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error while adding a user: " + ex.Message);
             }
         }
 
@@ -71,7 +71,7 @@ namespace Travel_API.Controllers
             {
                 var user = _userService.GetAllUsers().FirstOrDefault(u => u.Id == id);
                 if (user == null)
-                    return NotFound();
+                    return NotFound("Errir while updating a user.");
 
                 user.Name = updatedUser.Name;
                 user.Email = updatedUser.Email;
@@ -83,7 +83,7 @@ namespace Travel_API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error while updating a user: " + ex.Message);
             }
         }
 
@@ -94,7 +94,7 @@ namespace Travel_API.Controllers
             {
                 var user = _userService.GetAllUsers().FirstOrDefault(u => u.Id == id);
                 if (user == null)
-                    return NotFound();
+                    return NotFound("Error while deleting a user with that id.");
 
                 _userService.DeleteUser(id);
 
@@ -102,7 +102,7 @@ namespace Travel_API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error while deleting a user: " + ex.Message);
             }
         }
     }

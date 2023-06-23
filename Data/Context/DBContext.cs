@@ -15,6 +15,7 @@ namespace Data.Context
         }
     
 
+        public DbSet<UserRegister> UserRegister { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Travel> Travel { get; set; }
         public object MyTravel { get; internal set; }
